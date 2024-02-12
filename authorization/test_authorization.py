@@ -10,12 +10,12 @@ from data import Config
 class TestAuthorization:
     br = None
 
-    def test_one(self):
+    def open_browser(self):
         browser = Browser()
         self.br = browser.create_browser('https://app.teamly.ru/auth/sign-in')
         time.sleep(3)
 
-    def test_log_in_profile(self):
+    def log_in_profile(self):
         data = Config()
         settings = data.read_config('config.ini')
         # br = browser.create_browser('https://app.teamly.ru/auth/sign-up')
@@ -47,7 +47,9 @@ class TestAuthorization:
             print("Loading took too much time!")
 
     def check_log_in_profile(self):
-        print(self.br.current_url)
+        # print()
+        # print(self.br.current_url)
+        # time.sleep(5)
         pattern = 'https://arina-best.teamly.ru/'
         try:
             element = WebDriverWait(self.br, 10).until(ec.url_matches(pattern))
