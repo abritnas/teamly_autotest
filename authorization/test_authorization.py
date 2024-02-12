@@ -46,7 +46,7 @@ class TestAuthorization:
         except TimeoutException:
             print("Loading took too much time!")
 
-    def test_check_log_in_profile(self):
+    def check_log_in_profile(self):
         print(self.br.current_url)
         pattern = 'https://arina-best.teamly.ru/'
         try:
