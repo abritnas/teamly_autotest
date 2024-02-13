@@ -2,10 +2,9 @@ import configparser
 
 
 class Config:
-    username = None
-    password = None
+    config = None
 
     def read_config(self, filename):
-        config = configparser.ConfigParser()
-        config.read(filename)
-        return config
+        self.config = configparser.ConfigParser()
+        self.config.read(filename)
+        return self.config
