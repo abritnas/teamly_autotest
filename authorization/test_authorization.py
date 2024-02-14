@@ -5,11 +5,11 @@ import time
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 from data import Config
-from seleniumwire import webdriver
 
 
 class TestAuthorization:
     br = None
+    status = None
 
     def open_browser(self):
         browser = Browser()
@@ -37,7 +37,7 @@ class TestAuthorization:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.ID, 'password'))
             )
-            element.send_keys(settings["Authorization"]["password"])
+            element.send_keys(config_password)
         except TimeoutException:
             print("Loading took too much time!")
         try:
@@ -47,10 +47,13 @@ class TestAuthorization:
                                                 '2]/article/section/form/button/span'))
             )
             element.click()
-            status = self.br.requests[-1].response.status_code
-            return status
+            self.status = self.br.requests[-1].response.status_code
+            return self.status
         except TimeoutException:
-            print("Loading took too much time!1")
+            # if self.status != 200:
+            #     print("Статус не 200")
+            # else:
+            print("Loading took too much time!")
             # for request in self.br.requests:
             #     if request.response:
             #         print(request.response.status_code, request.path)
@@ -65,5 +68,8 @@ class TestAuthorization:
             # print("okay")
             # print(element)
         except TimeoutException:
-            print("Loading took too much time1!")
+            if self.status != 200:
+                print("Статус не 200")
+            else:
+                print("Loading took too much time!")
         self.br.quit()
