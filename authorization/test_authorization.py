@@ -5,6 +5,7 @@ import time
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 from data import Config
+from seleniumwire import webdriver
 
 
 class TestAuthorization:
@@ -14,8 +15,11 @@ class TestAuthorization:
         browser = Browser()
         self.br = browser.create_browser('https://app.teamly.ru/auth/sign-in')
         time.sleep(3)
+        # for request in self.br.requests:
+        #     if request.response:
+        #         print(request.response.status_code, request.path)
 
-    def log_in_profile(self):
+    def log_in_profile(self, config_username, config_password):
         data = Config()
         settings = data.read_config('config.ini')
         # br = browser.create_browser('https://app.teamly.ru/auth/sign-up')
@@ -26,7 +30,7 @@ class TestAuthorization:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.ID, "username"))
             )
-            element.send_keys(settings["Authorization"]["username"])
+            element.send_keys(config_username)
         except TimeoutException:
             print("Loading took too much time!")
         try:
@@ -43,8 +47,13 @@ class TestAuthorization:
                                                 '2]/article/section/form/button/span'))
             )
             element.click()
+            status = self.br.requests[-1].response.status_code
+            return status
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Loading took too much time!1")
+            # for request in self.br.requests:
+            #     if request.response:
+            #         print(request.response.status_code, request.path)
 
     def check_log_in_profile(self):
         # print()

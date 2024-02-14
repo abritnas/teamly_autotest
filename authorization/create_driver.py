@@ -1,4 +1,5 @@
-from selenium import webdriver
+
+from seleniumwire import webdriver
 
 
 class Browser:
