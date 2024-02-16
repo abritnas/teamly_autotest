@@ -4,28 +4,19 @@ from create_driver import Browser
 import time
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
-from data import Config
 
 
 class TestAuthorization:
     br = None
     status = None
+    path = None
 
     def open_browser(self):
         browser = Browser()
         self.br = browser.create_browser('https://app.teamly.ru/auth/sign-in')
         time.sleep(3)
-        # for request in self.br.requests:
-        #     if request.response:
-        #         print(request.response.status_code, request.path)
 
     def log_in_profile(self, config_username, config_password):
-        data = Config()
-        settings = data.read_config('config.ini')
-        # br = browser.create_browser('https://app.teamly.ru/auth/sign-up')
-        # br.find_element(By.ID, 'email').send_keys('evlanova.arisha@mail.ru')
-        # self.br.find_element(By.LINK_TEXT, 'https://app.teamly.ru/auth/sign-in').click()
-        # time.sleep(2)
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.ID, "username"))
@@ -47,26 +38,26 @@ class TestAuthorization:
                                                 '2]/article/section/form/button/span'))
             )
             element.click()
-            self.status = self.br.requests[-1].response.status_code
-            return self.status
+            time.sleep(2)
+            for request in self.br.requests:
+                if request.response:
+                    if request.path == '/api/v1/auth/user/login':
+                        print(request.response.status_code)
+                        print(request.path)
+                        self.status = request.response.status_code
+                        self.path = request.path
+                    # print(request.response.status_code, request.path)
+            # print(len(self.br.requests))
+            # self.status = self.br.requests[-1].response.status_code
+            # self.path = self.br.requests[-1].path
+            return self.status, self.path
         except TimeoutException:
-            # if self.status != 200:
-            #     print("Статус не 200")
-            # else:
             print("Loading took too much time!")
-            # for request in self.br.requests:
-            #     if request.response:
-            #         print(request.response.status_code, request.path)
 
     def check_log_in_profile(self):
-        # print()
-        # print(self.br.current_url)
-        # time.sleep(5)
         pattern = 'https://arina-best.teamly.ru/'
         try:
-            element = WebDriverWait(self.br, 10).until(ec.url_matches(pattern))
-            # print("okay")
-            # print(element)
+            WebDriverWait(self.br, 10).until(ec.url_matches(pattern))
         except TimeoutException:
             if self.status != 200:
                 print("Статус не 200")
