@@ -42,8 +42,8 @@ class TestAuthorization:
             for request in self.br.requests:
                 if request.response:
                     if request.path == '/api/v1/auth/user/login':
-                        print(request.response.status_code)
-                        print(request.path)
+                        # print(request.response.status_code)
+                        # print(request.path)
                         self.status = request.response.status_code
                         self.path = request.path
                     # print(request.response.status_code, request.path)
@@ -55,12 +55,16 @@ class TestAuthorization:
             print("Loading took too much time!")
 
     def check_log_in_profile(self):
+        answer = None
         pattern = 'https://arina-best.teamly.ru/'
         try:
             WebDriverWait(self.br, 10).until(ec.url_matches(pattern))
         except TimeoutException:
             if self.status != 200:
                 print("Статус не 200")
+                answer = True
             else:
                 print("Loading took too much time!")
+                answer = False
         self.br.quit()
+        return answer

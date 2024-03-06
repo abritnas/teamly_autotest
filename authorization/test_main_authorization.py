@@ -12,7 +12,8 @@ def test_authorization_correct_username_correct_password():
                                         settings["Authorization"]["password_correct"])
     assert status == 200, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"
-    run.check_log_in_profile()
+    answer = run.check_log_in_profile()
+    assert answer
 
 
 def test_authorization_incorrect_username_correct_password():
