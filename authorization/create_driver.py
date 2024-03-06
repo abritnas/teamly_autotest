@@ -9,3 +9,7 @@ class Browser:
         self.browser = webdriver.Chrome()
         self.browser.get(link)
         return self.browser
+
+    def get_browser(self):
+        return self.browser
+
