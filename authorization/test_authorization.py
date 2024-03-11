@@ -68,5 +68,4 @@ class TestAuthorization:
                 print("Статус не 200")
             else:
                 print("Loading took too much time!")
-        # self.br.quit()
         return answer

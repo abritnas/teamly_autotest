@@ -19,7 +19,6 @@ class TestSpaces:
             time.sleep(3)
         except TimeoutException:
             print("Loading took too much time!")
-        # self.br.quit()
 
     def check_open_page_list_of_spaces(self):
         answer = None
@@ -30,5 +29,46 @@ class TestSpaces:
         except TimeoutException:
             answer = False
             print("Loading took too much time!")
-        # # self.br.quit()
+        return answer
+
+    def create_new_space(self):
+        answer = None
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/main/div/div/div/div[2]/div[2]/div/div['
+                                                          '2]/ul/li[2]/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Loading took too much time!")
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.ID, 'create-space-popup-title'))
+            )
+            element.send_keys('Новое пространство от автотеста')
+        except TimeoutException:
+            print("Loading took too much time!")
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/form/div['
+                                                          '3]/label/span[1]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Loading took too much time!")
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/form/div[4]/button[2]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Loading took too much time!")
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/main/div/div/div/div/div['
+                                                          '1]/aside/div[2]/header/div[1]/div[2]/h3'))
+            )
+            answer = element
+        except TimeoutException:
+            print("Loading took too much time!")
         return answer
