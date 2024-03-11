@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 class TestSpaces:
     br = None
 
-    def open_list_of_spaces(self, browser):
+    def open_page_list_of_spaces(self, browser):
         self.br = browser
         try:
             element = WebDriverWait(self.br, 10).until(

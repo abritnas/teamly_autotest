@@ -1,4 +1,5 @@
 from test_list_of_spaces import TestSpaces
+from create_driver import Browser
 from authorization import test_authorization
 
 from test_main_authorization import test_authorization_correct_username_correct_password
@@ -10,4 +11,4 @@ from test_main_authorization import test_authorization_correct_username_correct_
 def test_open_page():
     run = TestSpaces()
     browser = test_authorization_correct_username_correct_password()
-    run.open_list_of_spaces(browser)
+    run.open_page_list_of_spaces(browser.get_browser())
