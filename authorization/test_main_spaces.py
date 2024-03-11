@@ -5,7 +5,8 @@ from test_list_of_spaces import TestSpaces
 from test_main_authorization import test_authorization_correct_username_correct_password
 
 
-# TODO добавить автоматическое удаление пространства после его создания
+# TODO добавить проверку на время, потому что сейчас у меня тест проходит даже если элемент не был найден надо
+#  сделать assert
 
 def test_creation_of_new_space():
     run = TestSpaces()
@@ -15,3 +16,5 @@ def test_creation_of_new_space():
     assert answer
     answer = run.create_new_space()
     assert answer.text == 'Новое пространство от автотеста'
+    run.open_page_list_of_spaces(browser.get_browser())
+    run.delete_space()

@@ -72,3 +72,36 @@ class TestSpaces:
         except TimeoutException:
             print("Loading took too much time!")
         return answer
+
+    def delete_space(self):
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div/div/main/div/div/div/div[2]/div['
+                                                          '3]/div/div[2]/div/div/div[1]/div/ul/li[2]/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Loading took too much time!")
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
+                                                          '1]/div/div/div/div/ul/li[4]/div/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Loading took too much time!")
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
+                                                          '2]/div/form/div/div/button[2]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Loading took too much time!")
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[3]/div/div/div[3]/button[1]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Loading took too much time!")
