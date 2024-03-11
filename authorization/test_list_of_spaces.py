@@ -19,4 +19,16 @@ class TestSpaces:
             time.sleep(3)
         except TimeoutException:
             print("Loading took too much time!")
-        self.br.quit()
+        # self.br.quit()
+
+    def check_open_page_list_of_spaces(self):
+        answer = None
+        pattern = 'https://arina-best.teamly.ru/space/list/all'
+        try:
+            if WebDriverWait(self.br, 10).until(ec.url_matches(pattern)):
+                answer = True
+        except TimeoutException:
+            answer = False
+            print("Loading took too much time!")
+        # # self.br.quit()
+        return answer
