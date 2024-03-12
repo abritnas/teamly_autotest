@@ -96,7 +96,6 @@ class TestSpaces:
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
-        time.sleep(2)
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
@@ -106,7 +105,6 @@ class TestSpaces:
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
-        time.sleep(2)
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
@@ -116,7 +114,6 @@ class TestSpaces:
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
-        time.sleep(2)
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[3]/div/div/div[3]/button[1]'))

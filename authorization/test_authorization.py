@@ -32,17 +32,18 @@ class TestAuthorization:
             )
             element.click()
             time.sleep(2)
-            for request in browser.requests:
-                if request.response:
-                    if request.path == '/api/v1/auth/user/login':
-                        # print(request.response.status_code)
-                        # print(request.path)
-                        self.status = request.response.status_code
-                        self.path = request.path
-                    # print(request.response.status_code, request.path)
-            # print(len(self.br.requests))
-            # self.status = self.br.requests[-1].response.status_code
-            # self.path = self.br.requests[-1].path
+            # [self.status, self.path] = browser.get_status_and_response('/api/v1/auth/user/login')
+            # for request in browser.requests:
+            #     if request.response:
+            #         if request.path == '/api/v1/auth/user/login':
+            #             # print(request.response.status_code)
+            #             # print(request.path)
+            #             self.status = request.response.status_code
+            #             self.path = request.path
+            #         # print(request.response.status_code, request.path)
+            # # print(len(self.br.requests))
+            # # self.status = self.br.requests[-1].response.status_code
+            # # self.path = self.br.requests[-1].path
             return self.status, self.path
         except TimeoutException:
             print("Loading took too much time!")
