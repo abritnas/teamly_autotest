@@ -7,9 +7,11 @@ from selenium.webdriver.common.by import By
 
 class TestSpaces:
     br = None
+    t = None
 
     def open_page_list_of_spaces(self, browser):
         self.br = browser
+        self.t = True
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[1]/header/div/div/div/div[1]/nav/ul/li['
@@ -18,21 +20,26 @@ class TestSpaces:
             element.click()
             time.sleep(3)
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in open_page_list_of_spaces")
+            self.t = False
+        return self.t
 
     def check_open_page_list_of_spaces(self):
         answer = None
+        self.t = True
         pattern = 'https://arina-best.teamly.ru/space/list/all'
         try:
             if WebDriverWait(self.br, 10).until(ec.url_matches(pattern)):
                 answer = True
         except TimeoutException:
             answer = False
-            print("Loading took too much time!")
-        return answer
+            print("Time in check_open_page_list_of_spaces")
+            self.t = False
+        return answer, self.t
 
     def create_new_space(self):
         answer = None
+        self.t = True
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/main/div/div/div/div[2]/div[2]/div/div['
@@ -40,14 +47,16 @@ class TestSpaces:
             )
             element.click()
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in create_new_spaces")
+            self.t = False
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.ID, 'create-space-popup-title'))
             )
             element.send_keys('Новое пространство от автотеста')
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in create_new_spaces")
+            self.t = False
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/form/div['
@@ -55,14 +64,16 @@ class TestSpaces:
             )
             element.click()
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in create_new_spaces")
+            self.t = False
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/form/div[4]/button[2]'))
             )
             element.click()
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in create_new_spaces")
+            self.t = False
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/main/div/div/div/div/div['
@@ -70,10 +81,12 @@ class TestSpaces:
             )
             answer = element
         except TimeoutException:
-            print("Loading took too much time!")
-        return answer
+            print("Time in create_new_spaces")
+            self.t = False
+        return answer, self.t
 
     def delete_space(self):
+        self.t = True
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div/div/main/div/div/div/div[2]/div['
@@ -81,7 +94,9 @@ class TestSpaces:
             )
             element.click()
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in create_new_spaces")
+            self.t = False
+        time.sleep(2)
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
@@ -89,7 +104,9 @@ class TestSpaces:
             )
             element.click()
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in create_new_spaces")
+            self.t = False
+        time.sleep(2)
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
@@ -97,11 +114,16 @@ class TestSpaces:
             )
             element.click()
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in create_new_spaces")
+            self.t = False
+        time.sleep(2)
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[3]/div/div/div[3]/button[1]'))
             )
             element.click()
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Time in create_new_spaces")
+            self.t = False
+        time.sleep(2)
+        return self.t
