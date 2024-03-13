@@ -44,7 +44,7 @@ class TestAuthorization:
             # # print(len(self.br.requests))
             # # self.status = self.br.requests[-1].response.status_code
             # # self.path = self.br.requests[-1].path
-            return self.status, self.path
+            # return self.status, self.path
         except TimeoutException:
             print("Loading took too much time!")
         # try:

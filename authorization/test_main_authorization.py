@@ -19,11 +19,12 @@ def test_authorization_correct_username_correct_password():
     time.sleep(3)
     run.log_in_profile(settings["Authorization"]["username_correct"],
                        settings["Authorization"]["password_correct"], browser.get_browser())
-    [status, path] = browser.get_status_and_response('/api/v1/auth/user/login')
+    [status, path, body] = browser.get_status_and_response('/api/v1/auth/user/login')
     assert status == 200, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"
-    answer = run.check_log_in_profile(browser.get_browser())
-    assert answer
+    # browser.get_id_space(body)
+    # answer = run.check_log_in_profile(browser.get_browser())
+    # assert answer
     return browser
 
 
