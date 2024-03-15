@@ -32,31 +32,8 @@ class TestAuthorization:
             )
             element.click()
             time.sleep(2)
-            # [self.status, self.path] = browser.get_status_and_response('/api/v1/auth/user/login')
-            # for request in browser.requests:
-            #     if request.response:
-            #         if request.path == '/api/v1/auth/user/login':
-            #             # print(request.response.status_code)
-            #             # print(request.path)
-            #             self.status = request.response.status_code
-            #             self.path = request.path
-            #         # print(request.response.status_code, request.path)
-            # # print(len(self.br.requests))
-            # # self.status = self.br.requests[-1].response.status_code
-            # # self.path = self.br.requests[-1].path
-            # return self.status, self.path
         except TimeoutException:
             print("Loading took too much time!")
-        # try:
-        #     element = WebDriverWait(self.br, 10).until(
-        #         ec.presence_of_element_located((By.XPATH,
-        #                                         '/html/body/div/div[1]/div/div/div/div/ul/li[1]/a/div'))
-        #     )
-        #     print('True')
-        #     element.click()
-        # except TimeoutException:
-        #     print("Loading took too much time!")
-
     def check_log_in_profile(self, browser):
         answer = None
         pattern = 'https://arina-best.teamly.ru/'
