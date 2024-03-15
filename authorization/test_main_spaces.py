@@ -5,7 +5,7 @@ from test_main_authorization import test_authorization_correct_username_correct_
 import json
 
 
-def test_creation_of_new_space():
+def test_creation_of_new_space_and_delete_after_creation():
     run = TestSpaces()
     browser = test_authorization_correct_username_correct_password()
     time = run.open_page_list_of_spaces(browser.get_browser())

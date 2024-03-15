@@ -10,9 +10,6 @@ config_password = settings["Authorization"]["password_correct"]
 
 
 def test_authorization_correct_username_correct_password():
-    # settings = data.read_config('config.ini')
-    # print(settings)
-    # print(settings["Authorization"]["username_correct"])
     run = TestAuthorization()
     browser = Browser()
     browser.create_browser('https://app.teamly.ru/auth/sign-in')
@@ -22,9 +19,6 @@ def test_authorization_correct_username_correct_password():
     [status, path, body] = browser.get_status_and_response('/api/v1/auth/user/login')
     assert status == 200, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"
-    # browser.get_id_space(body)
-    # answer = run.check_log_in_profile(browser.get_browser())
-    # assert answer
     return browser
 
 
@@ -33,8 +27,9 @@ def test_authorization_incorrect_username_correct_password():
     browser = Browser()
     browser.create_browser('https://app.teamly.ru/auth/sign-in')
     time.sleep(3)
-    [status, path] = run.log_in_profile(settings["Authorization"]["username_incorrect"],
-                                        settings["Authorization"]["password_correct"], browser.get_browser())
+    run.log_in_profile(settings["Authorization"]["username_incorrect"],
+                       settings["Authorization"]["password_correct"], browser.get_browser())
+    [status, path, body] = browser.get_status_and_response('/api/v1/auth/user/login')
     assert status == 401, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"
 
@@ -44,7 +39,8 @@ def test_authorization_correct_username_incorrect_password():
     browser = Browser()
     browser.create_browser('https://app.teamly.ru/auth/sign-in')
     time.sleep(3)
-    [status, path] = run.log_in_profile(settings["Authorization"]["username_correct"],
-                                        settings["Authorization"]["password_incorrect"], browser.get_browser())
+    run.log_in_profile(settings["Authorization"]["username_correct"],
+                       settings["Authorization"]["password_incorrect"], browser.get_browser())
+    [status, path, body] = browser.get_status_and_response('/api/v1/auth/user/login')
     assert status == 401, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"

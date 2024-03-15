@@ -8,6 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 class TestAuthorization:
     status = None
     path = None
+    body = None
 
     def log_in_profile(self, config_username, config_password, browser):
         try:
@@ -34,6 +35,7 @@ class TestAuthorization:
             time.sleep(2)
         except TimeoutException:
             print("Loading took too much time!")
+
     def check_log_in_profile(self, browser):
         answer = None
         pattern = 'https://arina-best.teamly.ru/'
