@@ -54,7 +54,7 @@ class TestSpaces:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.ID, 'create-space-popup-title'))
             )
-            element.send_keys('Новое пространство от автотеста')
+            element.send_keys('Новое избранное пространство от автотеста')
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
@@ -124,4 +124,17 @@ class TestSpaces:
             print("Time in create_new_spaces")
             self.t = False
         time.sleep(2)
+        return self.t
+
+    def favorite_space(self):
+        self.t = True
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/main/div/div/div/div[2]/div[3]/div/div['
+                                                          '2]/div/div/div/div/ul/li[1]/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
         return self.t
