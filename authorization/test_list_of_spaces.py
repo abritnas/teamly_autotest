@@ -138,3 +138,42 @@ class TestSpaces:
             print("Time in create_new_spaces")
             self.t = False
         return self.t
+
+    def archive_space(self):
+        self.t = True
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
+                                                          '1]/div/div/div/div/ul/li[3]/div/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[3]/div/div/div[3]/button[1]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
+                                                          '2]/div/form/div/div/button[2]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[3]/div/div/div[3]/button[1]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        time.sleep(2)
+        return self.t

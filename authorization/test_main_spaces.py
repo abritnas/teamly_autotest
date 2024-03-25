@@ -55,3 +55,19 @@ def test_creation_and_make_favorites():
     [status, path, body] = browser.get_status_and_response('/api/v1/favorites')
     assert status == 200, "Ошибка"
     assert path == '/api/v1/favorites', "Другой путь"
+
+
+def test_creation_of_new_space_and_archive():
+    run = TestSpaces()
+    browser = test_authorization_correct_username_correct_password()
+    time = run.open_page_list_of_spaces(browser.get_browser())
+    assert time
+    [answer, time] = run.check_open_page_list_of_spaces()
+    assert answer
+    assert time
+    [answer, time] = run.create_new_space()
+    assert answer.text == 'Новое избранное пространство от автотеста'
+    assert time
+    [status, path, body] = browser.get_status_and_response('/api/v1/wiki/ql/space')
+    assert status == 200, "Ошибка"
+    assert path == '/api/v1/wiki/ql/space', "Другой путь"
