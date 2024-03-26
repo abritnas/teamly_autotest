@@ -65,9 +65,23 @@ def test_creation_of_new_space_and_archive():
     [answer, time] = run.check_open_page_list_of_spaces()
     assert answer
     assert time
-    [answer, time] = run.create_new_space()
+    [answer, time] = run.create_new_space('Новое архивированное пространство от автотетста')
     assert answer.text == 'Новое избранное пространство от автотеста'
     assert time
     [status, path, body] = browser.get_status_and_response('/api/v1/wiki/ql/space')
     assert status == 200, "Ошибка"
     assert path == '/api/v1/wiki/ql/space', "Другой путь"
+    body = body.decode().replace("'", '"')
+    data = json.loads(body)
+    data = data["query"]
+    data = data["__filter"]
+    id_article = data["id"]
+    time = run.open_page_list_of_spaces(browser.get_browser())
+    assert time
+    time = run.archive_space()
+    assert time
+    path_path = '/api/v1/space/' + id_article + '/archive'
+    [status, path, body] = browser.get_status_and_response(path_path)
+    assert status == 200, "Ошибка"
+    assert path == path_path, "Другой путь"
+
