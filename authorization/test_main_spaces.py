@@ -13,7 +13,7 @@ def test_creation_of_new_space_and_delete_after_creation():
     [answer, time] = run.check_open_page_list_of_spaces()
     assert answer
     assert time
-    [answer, time] = run.create_new_space()
+    [answer, time] = run.create_new_space('Новое пространство от автотеста')
     assert answer.text == 'Новое пространство от автотеста'
     assert time
     [status, path, body] = browser.get_status_and_response('/api/v1/wiki/ql/space')
@@ -42,7 +42,7 @@ def test_creation_and_make_favorites():
     [answer, time] = run.check_open_page_list_of_spaces()
     assert answer
     assert time
-    [answer, time] = run.create_new_space()
+    [answer, time] = run.create_new_space('Новое избранное пространство от автотеста')
     assert answer.text == 'Новое избранное пространство от автотеста'
     assert time
     [status, path, body] = browser.get_status_and_response('/api/v1/wiki/ql/space')
@@ -66,7 +66,7 @@ def test_creation_of_new_space_and_archive():
     assert answer
     assert time
     [answer, time] = run.create_new_space('Новое архивированное пространство от автотетста')
-    assert answer.text == 'Новое избранное пространство от автотеста'
+    assert answer.text == 'Новое архивированное пространство от автотетста'
     assert time
     [status, path, body] = browser.get_status_and_response('/api/v1/wiki/ql/space')
     assert status == 200, "Ошибка"
