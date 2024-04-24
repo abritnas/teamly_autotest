@@ -178,3 +178,67 @@ class TestSpaces:
             self.t = False
         time.sleep(2)
         return self.t
+
+    def get_permissions_in_space(self):
+        self.t = True
+        # шестеренка
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div/div/main/div/div/div/div[2]/div['
+                                                          '3]/div/div[2]/div/div/div/div/ul/li[2]/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        # таба с правами
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
+                                                          '1]/div/div/div/div/ul/li[2]/div/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        # селект для пользователя
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[2]/div/div[2]/div/div[2]/div/form/div['
+                                                          '1]/div[1]/div/div[1]/button[2]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        # выбор пользователя
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div[2]/div/form/div['
+                                                          '1]/div[1]/div/div[2]/div/div/ul/li[1]/label/span[1]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        # кнопка "Добавить"
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div[2]/div/form/div['
+                                                          '1]/div[1]/div[2]/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        # кнопка "сохранить"
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div[2]/div/form/div['
+                                                          '2]/div/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        return self.t

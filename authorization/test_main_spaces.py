@@ -85,3 +85,25 @@ def test_creation_of_new_space_and_archive():
     assert status == 200, "Ошибка"
     assert path == path_path, "Другой путь"
 
+
+def test_creation_of_new_space_and_get_permissions():
+    run = TestSpaces()
+    browser = test_authorization_correct_username_correct_password()
+    time = run.open_page_list_of_spaces(browser.get_browser())
+    assert time
+    [answer, time] = run.check_open_page_list_of_spaces()
+    assert answer
+    assert time
+    [answer, time] = run.create_new_space('Новое пространство от автотетста')
+    assert answer.text == 'Новое пространство от автотетста'
+    assert time
+    [status, path, body] = browser.get_status_and_response('/api/v1/wiki/ql/space')
+    assert status == 200, "Ошибка"
+    assert path == '/api/v1/wiki/ql/space', "Другой путь"
+    time = run.open_page_list_of_spaces(browser.get_browser())
+    assert time
+    time = run.get_permissions_in_space()
+    assert time
+    [status, path, body] = browser.get_status_and_response('/api/v1/wiki/ql/permissions')
+    assert status == 200, status
+    assert path == '/api/v1/wiki/ql/permissions', "Другой путь"

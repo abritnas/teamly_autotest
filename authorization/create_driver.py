@@ -25,3 +25,14 @@ class Browser:
                     path_from_browser = request.path
                     body_from_browser = request.body
         return status_from_browser, path_from_browser, body_from_browser
+
+    def get_cookies(self):
+        cookies = self.browser.get_cookies()
+        return cookies
+
+    def add_cookies(self):
+        with open('cookies.json', 'r') as file:
+            cookies = json.load(file)
+            for cookie in cookies:
+                self.browser.add_cookie(cookie)
+        self.browser.refresh()
