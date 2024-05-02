@@ -3,7 +3,6 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
-from create_driver import Browser
 
 
 class TestSpaces:
