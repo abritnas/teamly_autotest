@@ -8,6 +8,7 @@ from test_actions_with_article import TestActionsArticle
 
 
 def test_create_space_and_article():
-    id_space = test_creation_of_new_space()
+    [id_space, browser] = test_creation_of_new_space()
     run = TestActionsArticle()
+    run.create_article(browser)
 

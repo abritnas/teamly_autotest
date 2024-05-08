@@ -24,7 +24,7 @@ def test_creation_of_new_space():
     data = data["query"]
     data = data["__filter"]
     id_space = data["id"]
-    return id_space
+    return id_space, browser.get_browser()
 
 
 def test_creation_of_new_space_and_delete_after_creation():

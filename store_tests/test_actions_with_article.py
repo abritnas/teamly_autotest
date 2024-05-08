@@ -18,3 +18,15 @@ class TestActionsArticle:
     def create_article(self, browser):
         self.br = browser
         self.t = True
+        # кнопка создать в сайдбаре
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                # ec.presence_of_element_located((By.CLASS_NAME, "article-detail-sidebar__action grow"))
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/main/div/div/div/div/div[1]/aside/div['
+                                                          '2]/footer/ul/li[1]/div/div/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_article")
+            self.t = False
+        # button spacing-medium create-dropdown__actions-item create-dropdown__actions-item
