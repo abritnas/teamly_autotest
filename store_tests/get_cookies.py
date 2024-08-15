@@ -8,10 +8,11 @@ data = Config()
 settings = data.read_config('config_stage.ini')
 config_username = settings["Authorization"]["username_correct"]
 config_password = settings["Authorization"]["password_correct"]
+config_link = settings["Authorization"]["link_authorization"]
 
 run = TestAuthorization()
 browser = Browser()
-browser.create_browser('https://app.teamly.ru/auth/sign-in')
+browser.create_browser(config_link)
 time.sleep(3)
 run.log_in_profile(settings["Authorization"]["username_correct"],
                    settings["Authorization"]["password_correct"], browser.get_browser())

@@ -13,6 +13,14 @@ class TestAuthorization:
     def log_in_profile(self, config_username, config_password, browser):
         try:
             element = WebDriverWait(browser, 10).until(
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[1]/main/div/div/div['
+                                                          '2]/article/section/div[1]/button'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Loading took too much time!")
+        try:
+            element = WebDriverWait(browser, 10).until(
                 ec.presence_of_element_located((By.ID, "username"))
             )
             element.send_keys(config_username)
