@@ -14,8 +14,8 @@ class TestSpaces:
         self.t = True
         try:
             element = WebDriverWait(self.br, 10).until(
-                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[1]/header/div/div/div/div[1]/nav/ul/li['
-                                                          '2]/button'))
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[1]/header/div/div/div/div/nav/ul/li['
+                                                          '2]/a/div'))
             )
             element.click()
             time.sleep(3)
@@ -27,7 +27,7 @@ class TestSpaces:
     def check_open_page_list_of_spaces(self):
         answer = None
         self.t = True
-        pattern = 'https://arina-best.teamly.ru/space/list/all'
+        pattern = 'https://default.stage-wiki.vpool.qsoft.ru/space/list/all'
         try:
             if WebDriverWait(self.br, 10).until(ec.url_matches(pattern)):
                 answer = True
@@ -40,15 +40,17 @@ class TestSpaces:
     def create_new_space(self, name_space):
         answer = None
         self.t = True
+        # нажать на папку для создания пространства
         try:
             element = WebDriverWait(self.br, 10).until(
-                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div/main/div/div/div/div[2]/div[2]/div/div['
-                                                          '2]/ul/li[2]/div/button'))
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[1]/main/div/div/div/div[2]/div['
+                                                          '2]/div/div[2]/ul/li[3]/div/button'))
             )
             element.click()
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
+        # написать название
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.ID, 'create-space-popup-title'))
@@ -57,6 +59,7 @@ class TestSpaces:
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
+        # кнопка закрепить в списке пространств
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/form/div['
@@ -66,14 +69,36 @@ class TestSpaces:
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
+        # кнопка продолжить после названия
         try:
             element = WebDriverWait(self.br, 10).until(
-                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/form/div[4]/button[2]'))
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[2]/div/div[2]/div/form/div[4]/button[2]'))
             )
             element.click()
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
+        # кнопка продолжить после настроек
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located(
+                    (By.XPATH, '//*[@id="app"]/div[2]/div/div[2]/div/form/div[2]/button[2]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        # кнопка создать после выбора шаблона с нуля
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located(
+                    (By.XPATH, '//*[@id="app"]/div[2]/div/div[2]/div/form/div[2]/button[2]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces")
+            self.t = False
+        # возвращаем название пространства
         try:
             element = WebDriverWait(self.br, 10).until(
                 ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/main/div/div/div/div/div['
@@ -85,7 +110,11 @@ class TestSpaces:
             self.t = False
         return answer, self.t
 
+    # TODO надо придумать, что сделать с удалением пространства. есть 3 варианта: 1) сначала использовать поиск,
+    #  потом удаление, 2) либо использовать айдт пространства, и как-то через список пространств удалять 3) удалять
+    #  по айди через ссылку, и там дальше через само пространство
     def delete_space(self):
+
         self.t = True
         try:
             element = WebDriverWait(self.br, 10).until(
