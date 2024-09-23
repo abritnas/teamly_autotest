@@ -113,45 +113,41 @@ class TestSpaces:
     # TODO надо придумать, что сделать с удалением пространства. есть 3 варианта: 1) сначала использовать поиск,
     #  потом удаление, 2) либо использовать айдт пространства, и как-то через список пространств удалять 3) удалять
     #  по айди через ссылку, и там дальше через само пространство
-    def delete_space(self):
 
+    #комментарий к to.do по итогу сделала удаление через страницу пространства - остаемся на странице пространства, затем в настойки и затем удаляем
+    def delete_space_from_space_page(self):
+        # идем в настройки пространства
         self.t = True
         try:
             element = WebDriverWait(self.br, 10).until(
-                ec.presence_of_element_located((By.XPATH, '/html/body/div/div/div/main/div/div/div/div[2]/div['
-                                                          '3]/div/div[2]/div/div/div[1]/div/ul/li[2]/div/button'))
+                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/main/div/div/div/div/div['
+                                                          '1]/aside/div[2]/div/div[2]/div[1]/div['
+                                                          '2]/div/div/div/ul/li[3]/a'))
             )
             element.click()
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
+        # ищем кнопку удалить
         try:
             element = WebDriverWait(self.br, 10).until(
-                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
-                                                          '1]/div/div/div/div/ul/li[4]/div/div/button'))
+                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/main/div/div/div/div/div['
+                                                          '2]/div[2]/div/div[1]/div/div[2]/div/div['
+                                                          '2]/div/div/div/button'))
             )
             element.click()
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
+        # кнопка "подтвердить в поп-апе"
         try:
             element = WebDriverWait(self.br, 10).until(
-                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[2]/div/div[2]/div/div['
-                                                          '2]/div/form/div/div/button[2]'))
+                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[2]/div/div[2]/div/div[2]/button[2]'))
             )
             element.click()
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
-        try:
-            element = WebDriverWait(self.br, 10).until(
-                ec.presence_of_element_located((By.XPATH, '/html/body/div/div[3]/div/div/div[3]/button[1]'))
-            )
-            element.click()
-        except TimeoutException:
-            print("Time in create_new_spaces")
-            self.t = False
-        time.sleep(2)
         return self.t
 
     def favorite_space(self):

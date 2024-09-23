@@ -45,15 +45,17 @@ def test_creation_of_new_space_and_delete_after_creation():
     data = json.loads(body)
     data = data["query"]
     data = data["__filter"]
-    id_article = data["id"]
-    time = run.open_page_list_of_spaces(browser.get_browser())
+    space_id = data["id"]
+    time = run.delete_space_from_space_page()
     assert time
-    time = run.delete_space()
-    assert time
-    path_path = '/api/v1/space/' + id_article
+    # path_path = '/api/v1/space/' + space_id
+    # проверка что вернулись на страницу "Список пространств"
+    path_path = '/api/v1/wiki/ql/spaces'
     [status, path, body] = browser.get_status_and_response(str(path_path))
-    assert status == 200, "Ошибка"
+    # print(path)
+    # print(path_path)
     assert path == path_path, "Другой путь"
+    assert status == 200, "Удаление прошло некорректно "
 
 
 def test_creation_and_make_favorites():
