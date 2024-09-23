@@ -20,6 +20,7 @@ class Browser:
         body_from_browser = None
         for request in self.browser.requests:
             if request.response:
+                # print(request.path) для вывода всех запросов
                 if request.path == path:
                     status_from_browser = request.response.status_code
                     path_from_browser = request.path
