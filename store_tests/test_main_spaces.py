@@ -75,7 +75,7 @@ def test_creation_and_make_favorites():
     time = run.open_page_list_of_spaces(browser.get_browser())
     assert time
     # Todo тут надо переделать функцию по добавлению пространства в избранные, потому что сейчас код ищет первое
-    #  простарнство в списке и его не находит, поэтому тест падает
+    #  пространство в списке и его не находит, поэтому тест падает
 
     time = run.favorite_space()
     assert time

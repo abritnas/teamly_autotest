@@ -1,3 +1,5 @@
+import time
+
 from test_list_of_spaces import TestSpaces
 from test_main_spaces import test_creation_of_new_space
 # from create_driver import Browser
@@ -10,5 +12,6 @@ from test_actions_with_article import TestActionsArticle
 def test_create_space_and_article():
     [id_space, browser] = test_creation_of_new_space()
     run = TestActionsArticle()
-    run.create_article(browser)
-
+    run.create_draft(browser)
+    time.sleep(6)
+    # run.publication_of_article()
