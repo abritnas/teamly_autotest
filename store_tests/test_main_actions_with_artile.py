@@ -12,6 +12,9 @@ from test_actions_with_article import TestActionsArticle
 def test_create_space_and_article():
     [id_space, browser] = test_creation_of_new_space()
     run = TestActionsArticle()
-    run.create_draft(browser)
-    time.sleep(6)
-    # run.publication_of_article()
+    time_for_search = run.create_draft(browser.get_browser())
+    # time.sleep(6)
+    assert time_for_search
+    time_for_search = run.publication_of_article()
+    assert time_for_search
+    time.sleep(4)

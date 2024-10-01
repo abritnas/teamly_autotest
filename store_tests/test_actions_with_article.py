@@ -30,13 +30,15 @@ class TestActionsArticle:
             print("Time in create_article")
             self.t = False
         time.sleep(5)
-        # выбираем новая статья в  поп-апе после плюсика
+        # выбираем новая статья в поп-апе после плюсика
         try:
-            element = WebDriverWait(self.br, 10).until(
+            element = WebDriverWait(self.br, 15).until(
                 # ec.presence_of_element_located((By.CLASS_NAME, "article-detail-sidebar__action grow"))
-                ec.presence_of_element_located((By.CSS_SELECTOR, 'body>div:nth-child(13)>div>ul>li:nth-child(1)>button'))
+                ec.presence_of_element_located((By.CSS_SELECTOR, 'body > div:nth-child(6) > div > ul > li:nth-child('
+                                                                 '1) > button'))
             )
             element.click()
+            time.sleep(5)  # для загрузки страницы черновика
         except TimeoutException:
             print("Time in create_article выбираем новая статья в  поп-апе после плюсика")
             self.t = False
@@ -52,17 +54,25 @@ class TestActionsArticle:
         # except TimeoutException:
         #     print("Time in create_article")
         #     self.t = False
+        return self.t
 
     def publication_of_article(self):
+        # self.br = browser
         self.t = True
-        # кнопка создать в сайдбаре
+        # кнопка опубликовать
         try:
             element = WebDriverWait(self.br, 10).until(
                 # ec.presence_of_element_located((By.CLASS_NAME, "article-detail-sidebar__action grow"))
-                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div[1]/main/div/div/div/div/div['
-                                                          '2]/div/div/div/div[3]/div[3]/div[3]/div[1]/button'))
+                ec.presence_of_element_located((By.CSS_SELECTOR, '#app > div.layout > main > div > div > div > div > '
+                                                                 'div.space-detail-page__content > div > '
+                                                                 'div.segment.article-detail__content > div > '
+                                                                 'div.article-header.article-content__row > '
+                                                                 'div.article-header__content > '
+                                                                 'div.article-toolbar.article-header__toolbar > '
+                                                                 'div.article-toolbar__item.publish-button > button'))
             )
             element.click()
         except TimeoutException:
-            print("Time in create_article")
+            print("Time in create_article при публикации статьи")
             self.t = False
+        return self.t
