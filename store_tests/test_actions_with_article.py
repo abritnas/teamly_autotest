@@ -22,20 +22,20 @@ class TestActionsArticle:
         try:
             element = WebDriverWait(self.br, 10).until(
                 # ec.presence_of_element_located((By.CLASS_NAME, "article-detail-sidebar__action grow"))
-                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div/div[1]/main/div/div/div/div/div['
+                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div[1]/main/div/div/div/div/div['
                                                           '1]/aside/div[2]/footer/ul/li[1]/div/div/button'))
             )
             element.click()
         except TimeoutException:
             print("Time in create_article")
             self.t = False
-        time.sleep(5)
+        # time.sleep(5)
         # выбираем новая статья в поп-апе после плюсика
         try:
             element = WebDriverWait(self.br, 15).until(
                 # ec.presence_of_element_located((By.CLASS_NAME, "article-detail-sidebar__action grow"))
-                ec.presence_of_element_located((By.CSS_SELECTOR, 'body > div:nth-child(6) > div > ul > li:nth-child('
-                                                                 '1) > button'))
+                ec.element_to_be_clickable((By.CSS_SELECTOR, 'body > div:nth-child(6) > div > ul > li:nth-child(1) > '
+                                                             'button'))
             )
             element.click()
             time.sleep(5)  # для загрузки страницы черновика
@@ -74,5 +74,23 @@ class TestActionsArticle:
             element.click()
         except TimeoutException:
             print("Time in create_article при публикации статьи")
+            self.t = False
+        return self.t
+
+    def change_title(self):
+        self.t = True
+        # меняем заголовок статьи
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                # ec.presence_of_element_located((By.CLASS_NAME, "article-detail-sidebar__action grow"))
+                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div['
+                                                                 '1]/main/div/div/div/div/div[2]/div/div/div/div['
+                                                                 '4]/div/div/div/div[6]/div/div[2]/div[1]/div/div['
+                                                                 '1]/div/div[2]/p'))
+            )
+            element.click()
+            element.send_keys('Новая статья')
+        except TimeoutException:
+            print("Time in create_article при изменении заголовка")
             self.t = False
         return self.t

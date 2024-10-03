@@ -18,7 +18,7 @@ class TestAuthorization:
             )
             element.click()
         except TimeoutException:
-            print("Loading took too much time!")
+            print("Loading took too much time! сотрудник компании")
         try:
             element = WebDriverWait(browser, 10).until(
                 ec.presence_of_element_located((By.ID, "username"))
