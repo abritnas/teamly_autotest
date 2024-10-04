@@ -1,5 +1,5 @@
-from test_authorization import TestAuthorization
-from data import Config
+from test_authorization import Authorization
+from actions_with_config import Config
 from create_driver import Browser
 import time
 import json
@@ -12,7 +12,7 @@ config_link = settings["Authorization"]["link_authorization"]
 
 
 def test_authorization_correct_username_correct_password():
-    run = TestAuthorization()
+    run = Authorization()
     browser = Browser()
     browser.create_browser(config_link)
     time.sleep(3)
@@ -28,7 +28,7 @@ def test_authorization_correct_username_correct_password():
 
 
 def test_authorization_incorrect_username_correct_password():
-    run = TestAuthorization()
+    run = Authorization()
     browser = Browser()
     browser.create_browser(config_link)
     time.sleep(3)
@@ -40,7 +40,7 @@ def test_authorization_incorrect_username_correct_password():
 
 
 def test_authorization_correct_username_incorrect_password():
-    run = TestAuthorization()
+    run = Authorization()
     browser = Browser()
     browser.create_browser(config_link)
     time.sleep(3)

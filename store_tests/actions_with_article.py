@@ -8,11 +8,14 @@ from selenium.webdriver.support.wait import WebDriverWait
 class Article:
     br = None
     t = None
+    id = None
 
     def open_space_with_link(self):
         pass
 
-    def open_space_in_list_of_spaces(self):
+    def get_article_id(self):
+        url = self.br.currect_url
+
         pass
 
     def create_draft(self, browser):

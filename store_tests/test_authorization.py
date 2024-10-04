@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-class TestAuthorization:
+class Authorization:
     status = None
     path = None
     body = None
