@@ -5,7 +5,7 @@ from selenium.common import TimeoutException
 from selenium.webdriver.common.by import By
 
 
-class TestSpaces:
+class Space:
     br = None
     t = None
 
