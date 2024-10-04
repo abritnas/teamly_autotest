@@ -5,7 +5,7 @@ import time
 import json
 
 data = Config()
-settings = data.read_config('config_stage.ini')
+settings = data.read_config('config_production.ini')
 config_username = settings["Authorization"]["username_correct"]
 config_password = settings["Authorization"]["password_correct"]
 config_link = settings["Authorization"]["link_authorization"]
