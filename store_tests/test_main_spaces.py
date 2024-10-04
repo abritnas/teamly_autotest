@@ -1,4 +1,4 @@
-from test_list_of_spaces import TestSpaces
+from test_list_of_spaces import Space
 # from create_driver import Browser
 # from store_tests import test_authorization
 from test_main_authorization import test_authorization_correct_username_correct_password
@@ -6,7 +6,7 @@ import json
 
 
 def test_creation_of_new_space():
-    run = TestSpaces()
+    run = Space()
     browser = test_authorization_correct_username_correct_password()
     time = run.open_page_list_of_spaces(browser.get_browser())
     assert time
@@ -28,7 +28,7 @@ def test_creation_of_new_space():
 
 
 def test_creation_of_new_space_and_delete_after_creation():
-    run = TestSpaces()
+    run = Space()
     browser = test_authorization_correct_username_correct_password()
     time = run.open_page_list_of_spaces(browser.get_browser())
     assert time
@@ -59,7 +59,7 @@ def test_creation_of_new_space_and_delete_after_creation():
 
 
 def test_creation_and_make_favorites():
-    run = TestSpaces()
+    run = Space()
     browser = test_authorization_correct_username_correct_password()
     time = run.open_page_list_of_spaces(browser.get_browser())
     assert time
@@ -85,7 +85,7 @@ def test_creation_and_make_favorites():
 
 
 def test_creation_of_new_space_and_archive():
-    run = TestSpaces()
+    run = Space()
     browser = test_authorization_correct_username_correct_password()
     time = run.open_page_list_of_spaces(browser.get_browser())
     assert time
@@ -114,7 +114,7 @@ def test_creation_of_new_space_and_archive():
 
 
 def test_creation_of_new_space_and_get_permissions():
-    run = TestSpaces()
+    run = Space()
     browser = test_authorization_correct_username_correct_password()
     time = run.open_page_list_of_spaces(browser.get_browser())
     assert time
