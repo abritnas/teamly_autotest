@@ -87,9 +87,9 @@ class Article:
             element = WebDriverWait(self.br, 10).until(
                 # ec.presence_of_element_located((By.CLASS_NAME, "article-detail-sidebar__action grow"))
                 ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div['
-                                                                 '1]/main/div/div/div/div/div[2]/div/div/div/div['
-                                                                 '4]/div/div/div/div[6]/div/div[2]/div[1]/div/div['
-                                                                 '1]/div/div[2]/p'))
+                                                          '1]/main/div/div/div/div/div[2]/div/div/div/div['
+                                                          '4]/div/div/div/div[6]/div/div[2]/div[1]/div/div['
+                                                          '1]/div/div[2]/p'))
             )
             element.click()
             element.send_keys('Новая статья')

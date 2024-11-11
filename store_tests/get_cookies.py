@@ -1,6 +1,6 @@
 from test_authorization import Authorization
-from actions_with_config import Config
-from create_driver import Browser
+from config import Config
+from browser import Browser
 import time
 import json
 

@@ -1,4 +1,4 @@
-from actions_with_space import Space
+from space import Space
 # from create_driver import Browser
 # from store_tests import test_authorization
 from test_main_authorization import test_authorization_correct_username_correct_password
