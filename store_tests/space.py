@@ -78,6 +78,16 @@ class Space:
         except TimeoutException:
             print("Time in create_new_spaces")
             self.t = False
+        # отключаем автопубликацию
+        try:
+            element = WebDriverWait(self.br, 10).until(
+                ec.presence_of_element_located(
+                    (By.XPATH, '/html/body/div/div[2]/div/div[2]/div/form/div[1]/label[6]/span[2]'))
+            )
+            element.click()
+        except TimeoutException:
+            print("Time in create_new_spaces в отключении автопубликации")
+            self.t = False
         # кнопка продолжить после настроек
         try:
             element = WebDriverWait(self.br, 10).until(
