@@ -5,6 +5,7 @@ from seleniumwire import webdriver
 
 class Browser:
     browser = None
+    body = None
 
     def create_browser(self, link):
         self.browser = webdriver.Chrome()
@@ -18,15 +19,14 @@ class Browser:
     def get_status_and_response(self, path):
         path_from_browser = None
         status_from_browser = None
-        body_from_browser = None
         for request in self.browser.requests:
             if request.response:
                 # print(request.path) для вывода всех запросов
                 if request.path == path:
                     status_from_browser = request.response.status_code
                     path_from_browser = request.path
-                    body_from_browser = request.body
-        return status_from_browser, path_from_browser, body_from_browser
+                    self.body = request.body
+        return status_from_browser, path_from_browser
 
     def get_cookies(self):
         cookies = self.browser.get_cookies()
@@ -38,3 +38,11 @@ class Browser:
             for cookie in cookies:
                 self.browser.add_cookie(cookie)
         self.browser.refresh()
+
+    def get_space_id_from_body(self):
+        body = self.body.decode().replace("'", '"')
+        data = json.loads(body)
+        data = data["query"]
+        data = data["__filter"]
+        id_space = data["id"]
+        return id_space

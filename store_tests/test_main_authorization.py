@@ -1,4 +1,4 @@
-from test_authorization import Authorization
+from authorization import Authorization
 from config import Config
 from browser import Browser
 import time
@@ -18,7 +18,7 @@ def test_authorization_correct_username_correct_password():
     time.sleep(3)
     run.log_in_profile(settings["Authorization"]["username_correct"],
                        settings["Authorization"]["password_correct"], browser.get_browser())
-    [status, path, body] = browser.get_status_and_response('/api/v1/auth/user/login')
+    [status, path] = browser.get_status_and_response('/api/v1/auth/user/login')
     assert status == 200, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"
     # browser.get_cookies()
@@ -34,7 +34,7 @@ def test_authorization_incorrect_username_correct_password():
     time.sleep(3)
     run.log_in_profile(settings["Authorization"]["username_incorrect"],
                        settings["Authorization"]["password_correct"], browser.get_browser())
-    [status, path, body] = browser.get_status_and_response('/api/v1/auth/user/login')
+    [status, path] = browser.get_status_and_response('/api/v1/auth/user/login')
     assert status == 401, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"
 
@@ -46,6 +46,6 @@ def test_authorization_correct_username_incorrect_password():
     time.sleep(3)
     run.log_in_profile(settings["Authorization"]["username_correct"],
                        settings["Authorization"]["password_incorrect"], browser.get_browser())
-    [status, path, body] = browser.get_status_and_response('/api/v1/auth/user/login')
+    [status, path] = browser.get_status_and_response('/api/v1/auth/user/login')
     assert status == 401, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"

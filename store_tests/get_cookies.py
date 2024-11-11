@@ -1,4 +1,4 @@
-from test_authorization import Authorization
+from authorization import Authorization
 from config import Config
 from browser import Browser
 import time
