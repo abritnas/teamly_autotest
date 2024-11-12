@@ -56,7 +56,7 @@ class Article:
         #     element.click()
         # except TimeoutException:
         #     print("Time in create_article")
-        #     self.t = False
+        #     self.time_for_search = False
         return self.t
 
     def publication_of_article(self):

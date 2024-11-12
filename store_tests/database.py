@@ -34,7 +34,7 @@ class Database:
             )
             element.click()
         except TimeoutException:
-            print("Time in create_new_spaces")
+            print("Time in create_database")
             self.t = False
         time.sleep(3)
         return self.t

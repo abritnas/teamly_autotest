@@ -19,8 +19,7 @@ def test_creation_of_new_space():
     [status, path] = browser.get_status_and_response('/api/v1/wiki/ql/space')
     assert status == 200, "Ошибка"
     assert path == '/api/v1/wiki/ql/space', "Другой путь"
-    space_id = browser.get_space_id_from_body()
-    return space_id, browser
+    return browser
 
 
 def test_creation_of_new_space_and_delete_after_creation():
