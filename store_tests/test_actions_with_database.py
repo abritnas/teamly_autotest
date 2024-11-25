@@ -13,7 +13,7 @@ def test_create_space_and_database():
     browser = test_creation_of_new_space()
     run = Database()
     time_for_search = run.create_database(browser.get_browser())
-    # time.sleep(6)
+    # time.sleep( 6)
     assert time_for_search
     [status, path] = browser.get_status_and_response('/api/v1/content-database')
     assert status == 200, "Ошибка"

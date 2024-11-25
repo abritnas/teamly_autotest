@@ -10,6 +10,7 @@ class Browser:
 
     def create_browser(self, link):
         self.browser = webdriver.Chrome()
+        self.browser.maximize_window()
         self.browser.get(link)
         # self.browser.set_window_size(1920, 1080)
         return self.browser
