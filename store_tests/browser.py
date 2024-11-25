@@ -6,11 +6,12 @@ from seleniumwire import webdriver
 class Browser:
     browser = None
     body = None
+    url = None
 
     def create_browser(self, link):
         self.browser = webdriver.Chrome()
         self.browser.get(link)
-        self.browser.set_window_size(1920, 1080)
+        # self.browser.set_window_size(1920, 1080)
         return self.browser
 
     def get_browser(self):
@@ -27,6 +28,10 @@ class Browser:
                     path_from_browser = request.path
                     self.body = request.body
         return status_from_browser, path_from_browser
+
+    def get_current_link(self):
+        self.url = self.browser.current_url
+        return self.url
 
     def get_cookies(self):
         cookies = self.browser.get_cookies()

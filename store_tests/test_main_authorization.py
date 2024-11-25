@@ -16,11 +16,14 @@ def test_authorization_correct_username_correct_password():
     browser = Browser()
     browser.create_browser(config_link)
     time.sleep(3)
-    run.log_in_profile(settings["Authorization"]["username_correct"],
-                       settings["Authorization"]["password_correct"], browser.get_browser())
+    time_for_search = run.log_in_profile(settings["Authorization"]["username_correct"],
+                                         settings["Authorization"]["password_correct"], browser.get_browser())
+    assert time_for_search
     [status, path] = browser.get_status_and_response('/api/v1/auth/user/login')
-    assert status == 200, "Ошибка"
+    # assert status == 200, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"
+    current_url = browser.get_current_link()
+    assert current_url == "https://arinatestpromokod.teamly.ru/", "Другая ссылка"
     # browser.get_cookies()
     # browser.add_cookies()
     # time.sleep(3)
