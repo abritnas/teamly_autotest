@@ -80,7 +80,7 @@ class Article:
             self.t = False
         return self.t
 
-    def change_title(self):
+    def change_title_article(self):
         self.t = True
         # меняем заголовок статьи
         try:

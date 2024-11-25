@@ -26,7 +26,7 @@ def test_create_space_and_article_and_change_title_and_publish():
     time_for_search = run.create_draft(browser.get_browser())
     # time.sleep(6)
     assert time_for_search
-    time_for_search = run.change_title()
+    time_for_search = run.change_title_article()
     assert time_for_search
     time.sleep(4)
     time_for_search = run.publication_of_article()
