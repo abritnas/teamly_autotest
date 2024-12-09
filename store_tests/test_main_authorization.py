@@ -23,7 +23,7 @@ def test_authorization_correct_username_correct_password():
     # assert status == 200, "Ошибка"
     assert path == '/api/v1/auth/user/login', "Другой путь"
     current_url = browser.get_current_link()
-    assert current_url == "https://arinatestpromokod.teamly.ru/", "Другая ссылка"
+    assert current_url == "https://arinatestpromokod.teamly.ru/home/latest", "Другая ссылка"
     # browser.get_cookies()
     # browser.add_cookies()
     # time.sleep(3)
