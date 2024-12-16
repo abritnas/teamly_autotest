@@ -124,9 +124,9 @@ class Space:
         # возвращаем название пространства = проверка что пространство создалось с правильным названием
         try:
             element = WebDriverWait(self.browser, 10).until(
-                ec.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div[1]/main/div/div/div/div/div['
+                ec.presence_of_element_located((By.XPATH, '//*[@id="app"]/div[1]/main/div/div/div/div/div[2]/div['
                                                           '2]/div/div/div/div[4]/div/div/div/div[6]/div/div[2]/div['
-                                                          '1]/div/div[1]/div/div[2]/p'))
+                                                          '1]/div/div[1]/div/div[2]'))
             )
             answer = element
         except TimeoutException:
